@@ -1,0 +1,17 @@
+{
+    "name": "christopheboucaut/padi",
+    "description": "A mini library for my personal project to implement design patterns, small utilities to have a clean archi, etc.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Padi\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Christophe Boucaut"
+        }
+    ],
+    "require": {}
+}
