@@ -24,6 +24,13 @@ We use [mago](https://mago.carthage.software/) to format, lint and analyze code.
 * `make format-check`: alias to check format code.
 * `make mago ARGS="--help"`: run mago with args.
 
+### Tests
+
+We use [phpunit](https://phpunit.de/).
+
+* `make test`: run tests (phpunit but maybe other tools later).
+* `make test ARGS="tests/{path}/{file}.php"`: run test for a specific file or folder.
+* `make phpunit ARGS="--version"`: run phpunit with args.
 
 ### Other commands
 

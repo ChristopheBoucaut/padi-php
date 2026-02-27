@@ -52,3 +52,10 @@ fix:
 	$(MAKE) mago ARGS="analyze --fix --format-after-fix"
 	$(MAKE) lint
 	$(MAKE) analyze
+
+# PHPUnit
+phpunit: override CMD:=./vendor/bin/phpunit
+phpunit: run
+
+test: ARGS:=tests
+test: phpunit

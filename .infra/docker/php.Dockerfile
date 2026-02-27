@@ -2,6 +2,12 @@ FROM php:8.5-cli
 
 WORKDIR /app
 
+# Install libs
+RUN apt-get update && apt-get install -y zip libzip-dev && rm -rf /var/lib/apt/lists/*
+
+# Add dependencies
+RUN docker-php-ext-install zip && docker-php-ext-enable zip
+
 # Add composer
 COPY --from=composer/composer /usr/bin/composer /usr/bin/composer
 

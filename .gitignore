@@ -1,2 +1,3 @@
 /vendor/
 .infra/docker/.image-built
+.vscode
