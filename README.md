@@ -13,7 +13,19 @@ Requirements:
 Run:
 * `make composer-install`: build docker image and install dependencies
 
-### Commands
+### Code quality
+
+We use [mago](https://mago.carthage.software/) to format, lint and analyze code.
+
+* `make fix`: alias to run format, linter & analyze with auto fix and run linter and analyzer to show the remaining errors.
+* `make lint`: alias to run linter.
+* `make analyze`: alias to analyze code to detect error, etc.
+* `make format`: alias to run format code.
+* `make format-check`: alias to check format code.
+* `make mago ARGS="--help"`: run mago with args.
+
+
+### Other commands
 
 * Run php:
     * `make php`: interactive mode.

@@ -1,0 +1,170 @@
+# Welcome to Mago!
+# For full documentation, see https://mago.carthage.software/tools/overview
+php-version = "8.5.0"
+
+[source]
+workspace = "."
+paths = ["src/", "tests/"]
+includes = ["vendor"]
+excludes = []
+
+[formatter]
+preset="psr-12"
+print-width = 140
+tab-width = 4
+use-tabs = false
+single-quote=false
+method-chain-semicolon-on-next-line=true
+trailing-comma=true
+sort-uses=true
+sort-class-methods=false
+null-type-hint="question"
+parentheses-around-new-in-member-access=false
+space-before-arrow-function-parameter-list-parenthesis=true
+empty-line-before-return=true
+space-within-grouping-parenthesis=false
+
+[linter]
+integrations = []
+
+[linter.rules] # Better doc on github : https://github.com/carthage-software/mago/tree/main/docs/tools/linter/rules
+# Enabled
+array-style = { enabled = true, level = "error" }
+block-statement = { enabled = true, level = "error" }
+class-name = { enabled = true, level = "error" }
+combine-consecutive-issets = { enabled = true, level = "warning" }
+constant-name = { enabled = true, level = "error" }
+lowercase-keyword = { enabled = true, level = "error" }
+enum-name = { enabled = true, level = "error" }
+cyclomatic-complexity = { enabled = true, level = "warning", threshold = 15 }
+excessive-nesting = { enabled = true, level = "warning", threshold = 6 }
+excessive-parameter-list = { enabled = true, level = "warning", threshold = 8 }
+loop-does-not-iterate = { enabled = true, level = "warning" }
+no-debug-symbols = { enabled = true, level = "warning" }
+no-request-variable = { enabled = true, level = "error" }
+no-short-opening-tag = { enabled = true, level = "error" }
+no-sprintf-concat = { enabled = true, level = "error" }
+optional-param-order = { enabled = true, level = "error" }
+interface-name = { enabled = true, level = "error", psr = true }
+deprecated-cast = { enabled = true, level = "error" }
+no-shell-execute-string = { enabled = true, level = "error" }
+deprecated-shell-execute-string = { enabled = true, level = "error" }
+deprecated-switch-semicolon = { enabled = true, level = "error" }
+no-void-reference-return = { enabled = true, level = "error" }
+no-underscore-class = { enabled = true, level = "error" }
+prefer-first-class-callable = { enabled = true, level = "warning" }
+no-trailing-space = { enabled = true, level = "error" }
+no-redundant-write-visibility = { enabled = true, level = "error" }
+no-redundant-string-concat = { enabled = true, level = "error" }
+no-redundant-parentheses = { enabled = true, level = "error" }
+no-redundant-method-override = { enabled = true, level = "error" }
+no-redundant-isset = { enabled = true, level = "error" }
+no-redundant-nullsafe = { enabled = true, level = "warning" }
+no-redundant-math = { enabled = true, level = "error" }
+no-redundant-literal-return = { enabled = true, level = "error" }
+no-redundant-final = { enabled = true, level = "error" }
+no-redundant-readonly = { enabled = true, level = "error" }
+no-redundant-continue = { enabled = true, level = "error" }
+no-redundant-block = { enabled = true, level = "error" }
+no-redundant-use = { enabled = true, level = "error" }
+no-redundant-yield-from = { enabled = true, level = "error" }
+no-protected-in-final = { enabled = true, level = "error" }
+no-self-assignment = { enabled = true, level = "error" }
+no-php-tag-terminator = { enabled = true, level = "error" }
+no-noop = { enabled = true, level = "error" }
+no-hash-emoji = { enabled = true, level = "error" }
+no-hash-comment = { enabled = true, level = "error" }
+no-goto = { enabled = true, level = "error" }
+no-global = { enabled = true, level = "error" }
+no-redundant-file = { enabled = true, level = "note" }
+no-multi-assignments = { enabled = true, level = "warning" }
+no-nested-ternary = { enabled = true, level = "warning" }
+no-ffi = { enabled = true, level = "warning" }
+no-eval = { enabled = true, level = "error" }
+no-error-control-operator = { enabled = true, level = "error" }
+no-empty-loop = { enabled = true, level = "error" }
+no-closing-tag = { enabled = true, level = "error" }
+no-assign-in-condition = { enabled = true, level = "error" }
+lowercase-type-hint = { enabled = true, level = "error" }
+invalid-open-tag = { enabled = true, level = "error" }
+file-name = { enabled = true, level = "error" }
+explicit-nullable-param = { enabled = true, level = "error" }
+ineffective-format-ignore-next = { enabled = true, level = "warning" }
+ineffective-format-ignore-region = { enabled = true, level = "warning" }
+no-empty-comment = { enabled = true, level = "warning" }
+no-empty-catch-clause = { enabled = true, level = "warning" }
+identity-comparison = { enabled = true, level = "warning" }
+inline-variable-return = { enabled = true, level = "warning" }
+instanceof-stringable = { enabled = true, level = "warning" }
+explicit-octal = { enabled = true, level = "warning" }
+prefer-early-continue = { enabled = true, level = "warning" }
+prefer-static-closure = { enabled = true, level = "warning" }
+str-contains = { enabled = true, level = "warning" }
+str-starts-with = { enabled = true, level = "warning" }
+prefer-while-loop = { enabled = true, level = "error" }
+strict-behavior = { enabled = true, level = "error" }
+strict-types = { enabled = true, level = "error" }
+no-alias-function = { enabled = true, level = "note" }
+readable-literal = { enabled = true, level = "note" }
+prefer-arrow-function = { enabled = true, level = "note" }
+function-name = { enabled = true, level = "warning", camel = true }
+tagged-fixme = { enabled = true, level = "warning" }
+tagged-todo = { enabled = true, level = "warning" }
+trait-name = { enabled = true, level = "error" }
+constant-condition = { enabled = true, level = "warning" }
+no-ini-set = { enabled = true, level = "warning" }
+no-insecure-comparison = { enabled = true, level = "error" }
+no-literal-password = { enabled = true, level = "error" }
+tainted-data-to-sink = { enabled = true, level = "error" }
+sensitive-parameter = { enabled = true, level = "error" }
+no-unsafe-finally = { enabled = true, level = "error" }
+require-preg-quote-delimiter = { enabled = true, level = "error" }
+single-class-per-file = { enabled = true, level = "error" }
+use-compound-assignment = { enabled = true, level = "help" }
+ambiguous-function-call = { enabled = true, level = "warning" }
+
+# Disabled
+assert-description = { enabled = false }
+braced-string-interpolation = { enabled = false }
+halstead = { enabled = false }
+kan-defect = { enabled = false }
+no-shorthand-ternary = { enabled = false }
+no-redundant-label = { enabled = false }
+no-variable-variable = { enabled = false }
+no-empty = { enabled = false }
+no-isset = { enabled = false }
+no-else-clause = { enabled = false }
+too-many-enum-cases = { enabled = false }
+too-many-methods = { enabled = false }
+too-many-properties = { enabled = false }
+valid-docblock = { enabled = false }
+no-boolean-flag-parameter = { enabled = false }
+literal-named-argument = { enabled = false }
+
+[analyzer]
+plugins = ["stdlib"]
+# Enable
+find-unused-definitions = true
+find-unused-expressions = true
+memoize-properties = true
+analyze-dead-code = true # Trying this option. Disable it if we have too many false positive.
+check-throws = true
+unchecked-exceptions = [
+    "LogicException",
+]
+check-missing-override = true
+find-unused-parameters = true
+check-missing-type-hints = true
+check-closure-missing-type-hints = true
+check-arrow-function-missing-type-hints = true
+register-super-globals = true
+trust-existence-checks = true
+check-property-initialization = true
+check-use-statements = true
+
+# Disable
+allow-possibly-undefined-array-keys = false
+strict-list-index-checks = false
+no-boolean-literal-comparison = false
+enforce-class-finality = false
+require-api-or-internal = false

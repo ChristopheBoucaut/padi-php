@@ -1,7 +1,7 @@
 export USER_UID=$(shell id -u)
 export USER_GID=$(shell id -g)
 
-.PHONY: build run php composer composer-install composer-dump-autoload
+.PHONY: build run php composer composer-install composer-dump-autoload mago
 IMAGE_NAME = padi-php
 IMAGE_FILE = .infra/docker/.image-built
 
@@ -28,3 +28,27 @@ composer-install: composer
 
 composer-dump-autoload: override ARGS:=dump-autoload
 composer-dump-autoload: composer
+
+# Mago
+mago: override CMD:=mago
+mago: run
+
+lint: override ARGS:=lint
+lint: mago
+
+format: override ARGS:=fmt
+format: mago
+
+format-check: override ARGS:=fmt --check
+format-check: mago
+
+analyze: override ARGS:=analyze
+analyze: mago
+
+# TODO: Improve logic to run all commands in one container to avoid start/stop container for each tasks
+fix:
+	$(MAKE) format
+	$(MAKE) mago ARGS="lint --fix --format-after-fix"
+	$(MAKE) mago ARGS="analyze --fix --format-after-fix"
+	$(MAKE) lint
+	$(MAKE) analyze
