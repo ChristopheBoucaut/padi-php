@@ -1,7 +1,7 @@
 export USER_UID=$(shell id -u)
 export USER_GID=$(shell id -g)
 
-.PHONY: build php composer composer-install composer-dump-autoload
+.PHONY: build run php composer composer-install composer-dump-autoload
 IMAGE_NAME = padi-php
 IMAGE_FILE = .infra/docker/.image-built
 
@@ -11,20 +11,20 @@ $(IMAGE_FILE): .infra/docker/php.Dockerfile
 
 build: $(IMAGE_FILE)
 
+run: build
+	docker run --rm -it -v $(PWD):/app $(IMAGE_NAME) $(CMD) $(ARGS)
+
 # PHP
-php: build
-	docker run --rm -it -v $(PWD):/app $(IMAGE_NAME) php $(filter-out $@,$(MAKECMDGOALS))
+php: override CMD:=php
+php: ARGS:=-a
+php: run
 
 # Composer
-composer: build
-	docker run --rm -it -v $(PWD):/app $(IMAGE_NAME) composer $(filter-out $@,$(MAKECMDGOALS))
+composer: override CMD:=composer
+composer: run
 
-composer-install:
-	make composer install
+composer-install: override ARGS:=install
+composer-install: composer
 
-composer-dump-autoload:
-	make composer dump-autoload
-
-# Avoid error when target not found, required to avoid error when use $(filter-out $@,$(MAKECMDGOALS)) to pass args
-%:
-	@:
+composer-dump-autoload: override ARGS:=dump-autoload
+composer-dump-autoload: composer
