@@ -122,6 +122,10 @@ require-preg-quote-delimiter = { enabled = true, level = "error" }
 single-class-per-file = { enabled = true, level = "error" }
 use-compound-assignment = { enabled = true, level = "help" }
 ambiguous-function-call = { enabled = true, level = "warning" }
+no-alternative-syntax = { enabled = true, level = "error" }
+no-short-bool-cast = { enabled = true, level = "error" }
+prefer-pre-increment = { enabled = true, level = "warning" }
+ambiguous-constant-access = { enabled = true, level = "error" }
 
 # Disabled
 assert-description = { enabled = false }
@@ -140,6 +144,9 @@ too-many-properties = { enabled = false }
 valid-docblock = { enabled = false }
 no-boolean-flag-parameter = { enabled = false }
 literal-named-argument = { enabled = false }
+no-fully-qualified-global-function = { enabled = false }
+no-fully-qualified-global-constant = { enabled = false }
+no-fully-qualified-global-class-like = { enabled = false }
 
 [analyzer]
 plugins = ["stdlib"]
@@ -151,6 +158,7 @@ analyze-dead-code = true # Trying this option. Disable it if we have too many fa
 check-throws = true
 unchecked-exceptions = [
     "LogicException",
+    "PHPUnit\\Framework\\ExpectationFailedException",
 ]
 check-missing-override = true
 find-unused-parameters = true
