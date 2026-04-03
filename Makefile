@@ -1,7 +1,8 @@
 export USER_UID=$(shell id -u)
 export USER_GID=$(shell id -g)
 
-.PHONY: build run php composer composer-install composer-dump-autoload mago
+.PHONY: build run php composer composer-install composer-dump-autoload mago lint format format-check analyze fix phpunit test
+.SILENT: fix
 IMAGE_NAME = padi-php
 IMAGE_FILE = .infra/docker/.image-built
 
@@ -47,11 +48,11 @@ analyze: mago
 
 # TODO: Improve logic to run all commands in one container to avoid start/stop container for each tasks
 fix:
-	$(MAKE) format
-	$(MAKE) mago ARGS="lint --fix --format-after-fix"
-	$(MAKE) mago ARGS="analyze --fix --format-after-fix"
-	$(MAKE) lint
-	$(MAKE) analyze
+	$(MAKE) -s format
+	$(MAKE) -s mago ARGS="lint --fix --format-after-fix"
+	$(MAKE) -s mago ARGS="analyze --fix --format-after-fix"
+	$(MAKE) -s lint
+	$(MAKE) -s analyze
 
 # PHPUnit
 phpunit: override CMD:=./vendor/bin/phpunit
