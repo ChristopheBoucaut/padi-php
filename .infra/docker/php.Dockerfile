@@ -12,7 +12,7 @@ RUN docker-php-ext-install zip && docker-php-ext-enable zip
 COPY --from=composer/composer /usr/bin/composer /usr/bin/composer
 
 # Install mago
-RUN curl --proto '=https' --tlsv1.2 -sSf https://carthage.software/mago.sh | bash -s -- --version=1.18.1
+RUN curl --proto '=https' --tlsv1.2 -sSf https://carthage.software/mago.sh | bash -s -- --version=1.19.0
 
 # Configure user in container to use host user
 ARG UID=1000

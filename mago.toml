@@ -38,7 +38,7 @@ lowercase-keyword = { enabled = true, level = "error" }
 enum-name = { enabled = true, level = "error" }
 cyclomatic-complexity = { enabled = true, level = "warning", threshold = 15 }
 excessive-nesting = { enabled = true, level = "warning", threshold = 6 }
-excessive-parameter-list = { enabled = true, level = "warning", threshold = 8 }
+excessive-parameter-list = { enabled = true, level = "warning", threshold = 8, constructor-threshold = 10 }
 loop-does-not-iterate = { enabled = true, level = "warning" }
 no-debug-symbols = { enabled = true, level = "warning" }
 no-request-variable = { enabled = true, level = "error" }
@@ -126,6 +126,11 @@ no-alternative-syntax = { enabled = true, level = "error" }
 no-short-bool-cast = { enabled = true, level = "error" }
 prefer-pre-increment = { enabled = true, level = "warning" }
 ambiguous-constant-access = { enabled = true, level = "error" }
+method-name = { enabled = true, level = "error" }
+no-is-null = { enabled = true, level = "warning" }
+no-iterator-to-array-in-foreach = { enabled = true, level = "error" }
+no-parameter-shadowing = { enabled = true, level = "warning" }
+sorted-integer-keys = { enabled = true, level = "warning" }
 
 # Disabled
 assert-description = { enabled = false }
@@ -147,6 +152,7 @@ literal-named-argument = { enabled = false }
 no-fully-qualified-global-function = { enabled = false }
 no-fully-qualified-global-constant = { enabled = false }
 no-fully-qualified-global-class-like = { enabled = false }
+missing-docs = { enabled = false }
 
 [analyzer]
 plugins = ["stdlib"]
