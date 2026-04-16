@@ -1,5 +1,6 @@
 # Welcome to Mago!
 # For full documentation, see https://mago.carthage.software/tools/overview
+version = "1.20.1"
 php-version = "8.5.0"
 
 [source]
@@ -23,6 +24,8 @@ parentheses-around-new-in-member-access=false
 space-before-arrow-function-parameter-list-parenthesis=true
 empty-line-before-return=true
 space-within-grouping-parenthesis=false
+align-parameters=false
+align-named-arguments=false
 
 [linter]
 integrations = []
@@ -131,6 +134,8 @@ no-is-null = { enabled = true, level = "warning" }
 no-iterator-to-array-in-foreach = { enabled = true, level = "error" }
 no-parameter-shadowing = { enabled = true, level = "warning" }
 sorted-integer-keys = { enabled = true, level = "warning" }
+no-literal-namespace-string = { enabled = true, level = "warning" }
+no-side-effects-with-declarations = { enabled = true, level = "warning" }
 
 # Disabled
 assert-description = { enabled = false }
@@ -153,6 +158,10 @@ no-fully-qualified-global-function = { enabled = false }
 no-fully-qualified-global-constant = { enabled = false }
 no-fully-qualified-global-class-like = { enabled = false }
 missing-docs = { enabled = false }
+no-null-property-init = { enabled = false }
+no-service-state-mutation = { enabled = false } # Enable it for frankenphp project
+string-style = { enabled = false }
+disallowed-type-instantiation = { enabled = false }
 
 [analyzer]
 plugins = ["stdlib"]
@@ -175,6 +184,8 @@ register-super-globals = true
 trust-existence-checks = true
 check-property-initialization = true
 check-use-statements = true
+find-overly-wide-return-types = true
+allow-side-effects-in-conditions = true
 
 # Disable
 allow-possibly-undefined-array-keys = false
