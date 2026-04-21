@@ -8,6 +8,11 @@
             "Padi\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Padi\\Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Christophe Boucaut"
