@@ -1,14 +1,14 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Padi\Specification;
 
 /**
  * @template TCandidate
- * @implements SpecificationInterface<TCandidate>
+ * @extends AbstractSpecification<TCandidate>
  */
-class OrSpecification implements SpecificationInterface
+class OrSpecification extends AbstractSpecification
 {
     /** @var SpecificationInterface<TCandidate>[] */
     private readonly array $specifications;
@@ -17,23 +17,26 @@ class OrSpecification implements SpecificationInterface
      * @param SpecificationInterface<TCandidate> ...$specifications
      */
     public function __construct(
-        SpecificationInterface ...$specifications
+        SpecificationInterface ...$specifications,
     ) {
         $this->specifications = $specifications;
     }
 
     #[\Override]
-    public function isSatisfiedBy(mixed $candidate): bool
+    protected function doIsSatisfiedBy(mixed $candidate): bool
     {
         if (empty($this->specifications)) {
             return true;
         }
 
+        $errors = [];
         foreach ($this->specifications as $specification) {
             if ($specification->isSatisfiedBy($candidate)) {
                 return true;
             }
+            $errors = \array_merge($errors, $specification->getLastErrors());
         }
+        $this->addErrors(...$errors);
 
         return false;
     }

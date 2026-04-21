@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Padi\Specification;
 
@@ -13,4 +13,7 @@ interface SpecificationInterface
      * @param TCandidate $candidate
      */
     public function isSatisfiedBy(mixed $candidate): bool;
+
+    /** @return string[] */
+    public function getLastErrors(): array;
 }

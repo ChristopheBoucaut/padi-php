@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Padi\Tests\Specification;
 
@@ -18,35 +18,33 @@ class AndSpecificationTest extends TestCase
 
     public function testWithOneSpecification(): void
     {
-        $specification = new AndSpecification(new TrueSpecification());
-        static::assertTrue($specification->isSatisfiedBy(null));
+        $specification = new AndSpecification(new IsTrue());
 
-        $specification = new AndSpecification(new FalseSpecification());
-        static::assertFalse($specification->isSatisfiedBy(null));
+        /** @NOTE : Start with false value to check errors is reset for second call */
+        static::assertFalse($specification->isSatisfiedBy(false));
+        static::assertSame([IsTrue::ERROR], $specification->getLastErrors());
+
+        static::assertTrue($specification->isSatisfiedBy(true));
+        static::assertSame([], $specification->getLastErrors());
     }
 
     public function testWithMultipleSpecifications(): void
     {
         // Mix ok / ko
-        $specification = new AndSpecification(
-            new TrueSpecification(),
-            new FalseSpecification(),
-            new TrueSpecification(),
-        );
-        static::assertFalse($specification->isSatisfiedBy(null));
+        $specification = new AndSpecification(new IsTrue(), new IsFalse(), new IsTrue());
+        static::assertFalse($specification->isSatisfiedBy(true));
+        static::assertSame([], $specification->getLastErrors());
+
+        static::assertFalse($specification->isSatisfiedBy(false));
+        static::assertSame([IsTrue::ERROR], $specification->getLastErrors());
 
         // Mix ok
-        $specification = new AndSpecification(
-            new TrueSpecification(),
-            new TrueSpecification(),
-        );
-        static::assertTrue($specification->isSatisfiedBy(null));
+        $specification = new AndSpecification(new IsTrue(), new IsTrue());
+        static::assertTrue($specification->isSatisfiedBy(true));
+        static::assertSame([], $specification->getLastErrors());
 
         // Mix ko
-        $specification = new AndSpecification(
-            new FalseSpecification(),
-            new FalseSpecification(),
-        );
-        static::assertFalse($specification->isSatisfiedBy(null));
+        static::assertFalse($specification->isSatisfiedBy(false));
+        static::assertSame([IsTrue::ERROR], $specification->getLastErrors());
     }
 }

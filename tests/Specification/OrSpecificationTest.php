@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare(strict_types = 1);
 
 namespace Padi\Tests\Specification;
 
@@ -18,35 +18,33 @@ class OrSpecificationTest extends TestCase
 
     public function testWithOneSpecification(): void
     {
-        $specification = new OrSpecification(new TrueSpecification());
-        static::assertTrue($specification->isSatisfiedBy(null));
+        $specification = new OrSpecification(new IsTrue());
 
-        $specification = new OrSpecification(new FalseSpecification());
-        static::assertFalse($specification->isSatisfiedBy(null));
+        /** @NOTE : Start with false value to check errors is reset for second call */
+        static::assertFalse($specification->isSatisfiedBy(false));
+        static::assertSame([IsTrue::ERROR], $specification->getLastErrors());
+
+        static::assertTrue($specification->isSatisfiedBy(true));
+        static::assertSame([], $specification->getLastErrors());
     }
 
     public function testWithMultipleSpecifications(): void
     {
         // Mix ok / ko
-        $specification = new OrSpecification(
-            new TrueSpecification(),
-            new FalseSpecification(),
-            new TrueSpecification(),
-        );
-        static::assertTrue($specification->isSatisfiedBy(null));
+        $specification = new OrSpecification(new IsTrue(), new IsFalse(), new IsTrue());
+        static::assertTrue($specification->isSatisfiedBy(true));
+        static::assertSame([], $specification->getLastErrors());
+
+        static::assertTrue($specification->isSatisfiedBy(false));
+        static::assertSame([], $specification->getLastErrors());
 
         // Mix ok
-        $specification = new OrSpecification(
-            new TrueSpecification(),
-            new TrueSpecification(),
-        );
-        static::assertTrue($specification->isSatisfiedBy(null));
+        $specification = new OrSpecification(new IsTrue(), new IsTrue());
+        static::assertTrue($specification->isSatisfiedBy(true));
+        static::assertSame([], $specification->getLastErrors());
 
         // Mix ko
-        $specification = new OrSpecification(
-            new FalseSpecification(),
-            new FalseSpecification(),
-        );
-        static::assertFalse($specification->isSatisfiedBy(null));
+        static::assertFalse($specification->isSatisfiedBy(false));
+        static::assertSame([IsTrue::ERROR, IsTrue::ERROR], $specification->getLastErrors());
     }
 }
