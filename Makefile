@@ -16,7 +16,7 @@ run: build
 	docker run --rm -it -v $(PWD):/app $(IMAGE_NAME) $(CMD) $(ARGS)
 
 run-ci:
-	docker run --rm -v $(PWD):/app $(IMAGE_NAME):latest $(CMD) $(ARGS)
+	docker run --rm -v $(PWD):/app --user $(USER_UID):$(USER_GID) $(IMAGE_NAME):latest $(CMD) $(ARGS)
 
 # PHP
 php: override CMD:=php
