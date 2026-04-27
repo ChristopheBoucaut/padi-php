@@ -15,6 +15,9 @@ build: $(IMAGE_FILE)
 run: build
 	docker run --rm -it -v $(PWD):/app $(IMAGE_NAME) $(CMD) $(ARGS)
 
+run-ci:
+	docker run --rm -v $(PWD):/app $(IMAGE_NAME):latest $(CMD) $(ARGS)
+
 # PHP
 php: override CMD:=php
 php: ARGS:=-a
@@ -60,3 +63,19 @@ phpunit: run
 
 test: ARGS:=tests
 test: phpunit
+
+# For CI
+ci-install:
+	$(MAKE) -s run-ci CMD=composer ARGS=install
+
+ci-test:
+	$(MAKE) -s run-ci CMD=./vendor/bin/phpunit ARGS=tests
+
+ci-lint:
+	$(MAKE) -s run-ci CMD=mago ARGS=lint
+
+ci-format-check:
+	$(MAKE) -s run-ci CMD=mago ARGS="fmt --check"
+
+ci-analyze:
+	$(MAKE) -s run-ci CMD=mago ARGS=analyze

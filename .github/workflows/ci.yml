@@ -1,0 +1,80 @@
+name: Task manager CI
+
+# User in Github action
+env:
+  USER_UID: 1001
+  USER_GID: 1001
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - uses: ./.github/actions/docker-build
+
+    - name: Cache vendor
+      id: cache-vendor
+      uses: actions/cache@v5
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+
+    - name: Init project
+      if: steps.cache-vendor.outputs.cache-hit != 'true'
+      run: make ci-install
+
+    - name: Save vendor
+      if: steps.cache-vendor.outputs.cache-hit != 'true'
+      uses: actions/cache/save@v5
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+
+  test:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - uses: ./.github/actions/docker-build
+
+    - name: Restore cached vendor
+      uses: actions/cache/restore@v5
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+
+    - run: make ci-test
+
+  code-quality:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - uses: ./.github/actions/docker-build
+
+    - name: Restore cached vendor
+      uses: actions/cache/restore@v5
+      with:
+        path: vendor
+        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+
+    - name: Linter
+      run: make ci-lint
+
+    - name: Format
+      run: make ci-format-check
+
+    - name: Analyze
+      run: make ci-analyze
