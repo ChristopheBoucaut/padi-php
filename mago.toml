@@ -1,6 +1,6 @@
 # Welcome to Mago!
 # For full documentation, see https://mago.carthage.software/tools/overview
-version = "1.22.0"
+version = "1.23.1"
 php-version = "8.5.0"
 
 [source]
