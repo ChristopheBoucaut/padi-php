@@ -177,7 +177,7 @@ analyze-dead-code = true # Trying this option. Disable it if we have too many fa
 check-throws = true
 unchecked-exceptions = [
     "LogicException",
-    "PHPUnit\\Framework\\ExpectationFailedException",
+    "PHPUnit\\Exception",
 ]
 check-missing-override = true
 find-unused-parameters = true
