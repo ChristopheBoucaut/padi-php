@@ -20,5 +20,8 @@
     ],
     "require-dev": {
         "phpunit/phpunit": "^13.0.5"
+    },
+    "require": {
+        "psr/event-dispatcher": "^1.0"
     }
 }
