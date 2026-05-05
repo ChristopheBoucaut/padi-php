@@ -187,6 +187,7 @@ check-arrow-function-missing-type-hints = true
 register-super-globals = true
 trust-existence-checks = true
 check-property-initialization = true
+class-initializers = ["setUp"]
 check-use-statements = true
 find-overly-wide-return-types = true
 allow-side-effects-in-conditions = true
