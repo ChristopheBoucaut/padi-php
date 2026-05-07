@@ -169,6 +169,9 @@ disallowed-type-instantiation = { enabled = false }
 
 [analyzer]
 plugins = ["stdlib"]
+ignore = [
+    { code = "unhandled-thrown-type", in = "tests/" },
+]
 # Enable
 find-unused-definitions = true
 find-unused-expressions = true
@@ -177,7 +180,6 @@ analyze-dead-code = true # Trying this option. Disable it if we have too many fa
 check-throws = true
 unchecked-exceptions = [
     "LogicException",
-    "PHPUnit\\Exception",
 ]
 check-missing-override = true
 find-unused-parameters = true
