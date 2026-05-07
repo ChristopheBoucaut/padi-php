@@ -12,6 +12,7 @@ interface SpecificationInterface
     /**
      * @param TCandidate $candidate
      */
+    #[\NoDiscard]
     public function isSatisfiedBy(mixed $candidate): bool;
 
     /** @return string[] */
