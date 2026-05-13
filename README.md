@@ -2,6 +2,19 @@
 
 A mini library for my personal project to implement design patterns, small utilities to have a clean archi, etc.
 
+## Installation
+
+```bash
+# Add repository
+composer config repositories.christopheboucaut/padi-php git https://github.com/ChristopheBoucaut/padi-php
+# Add dependency
+composer require christopheboucaut/padi-php
+# -- From master (add "minimum-stability": "dev" in your composer.json)
+composer require christopheboucaut/padi-php:dev-master
+# -- From specific version
+composer require christopheboucaut/padi-php:{X.Y.Z}
+```
+
 ## Contribute to the project
 
 ### Installation
