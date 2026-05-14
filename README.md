@@ -15,6 +15,11 @@ composer require christopheboucaut/padi-php:dev-master
 composer require christopheboucaut/padi-php:{X.Y.Z}
 ```
 
+## How to use this library?
+
+* [English documentation](_doc/en/README.md)
+* [French documentation](_doc/fr/README.md)
+
 ## Contribute to the project
 
 ### Installation
