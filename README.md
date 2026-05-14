@@ -1,6 +1,6 @@
 # Padi PHP
 
-A mini library for my personal project to implement design patterns, small utilities to have a clean archi, etc.
+A minimal library providing implementations of common design patterns and small utilities for clean architecture projects.
 
 ## Installation
 
@@ -33,7 +33,7 @@ Run:
 
 ### Code quality
 
-We use [mago](https://mago.carthage.software/) to format, lint and analyze code.
+We use [mago](https://mago.carthage.software/) to format, lint, and analyze code.
 
 * `make fix`: alias to run format, linter & analyze with auto fix and run linter and analyzer to show the remaining errors.
 * `make lint`: alias to run linter.
@@ -46,16 +46,16 @@ We use [mago](https://mago.carthage.software/) to format, lint and analyze code.
 
 We use [phpunit](https://phpunit.de/).
 
-* `make test`: run tests (phpunit but maybe other tools later).
+* `make test`: run the test suite.
 * `make test ARGS="tests/{path}/{file}.php"`: run test for a specific file or folder.
 * `make phpunit ARGS="--version"`: run phpunit with args.
 
 ### Other commands
 
-* Run php:
+* PHP:
     * `make php`: interactive mode.
     * `make php ARGS="-v"`: specific args.
-* Run composer:
+* Composer:
     * `make composer`: without args.
     * `make composer ARGS="help"`: specific args.
     * `make composer-install`: alias to install dependencies.
